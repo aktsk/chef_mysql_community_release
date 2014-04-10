@@ -24,6 +24,16 @@ class Chef
               socket_file = '/var/lib/mysql/mysql.sock'
               package_name = 'mysql-server'
               service_name = 'mysqld'
+            when '5.6'
+              base_dir = ''
+              include_dir = "#{base_dir}/etc/mysql/conf.d"
+              prefix_dir = '/usr'
+              lc_messages_dir = nil
+              run_dir = '/var/run/mysqld'
+              pid_file = '/var/run/mysql/mysql.pid'
+              socket_file = '/var/lib/mysql/mysql.sock'
+              package_name = 'mysql-community-server'
+              service_name = 'mysqld'
             end
           when '2014'
             case new_resource.version
@@ -69,6 +79,16 @@ class Chef
               pid_file = '/var/run/mysql/mysql.pid'
               socket_file = '/var/lib/mysql/mysql.sock'
               package_name = 'mysql-server'
+              service_name = 'mysqld'
+            when '5.6'
+              base_dir = ''
+              include_dir = "#{base_dir}/etc/mysql/conf.d"
+              prefix_dir = '/usr'
+              lc_messages_dir = nil
+              run_dir = '/var/run/mysqld'
+              pid_file = '/var/run/mysql/mysql.pid'
+              socket_file = '/var/lib/mysql/mysql.sock'
+              package_name = 'mysql-community-server'
               service_name = 'mysqld'
             end
           when '5'
@@ -222,19 +242,17 @@ class Chef
           case node['platform_version'].to_i.to_s
           when '2013'
             case new_resource.version
-            when '5.1'
+            when '5.1', '5.6'
               service_name = 'mysqld'
             end
           when '2014'
             case new_resource.version
-            when '5.1'
-              service_name = 'mysqld'
-            when '5.5'
+            when '5.1', '5.5', '5.6'
               service_name = 'mysqld'
             end
           when '6'
             case new_resource.version
-            when '5.1'
+            when '5.1', '5.6'
               service_name = 'mysqld'
             end
           when '5'
