@@ -28,6 +28,14 @@ Attributes
   </tr>
 </table>
 
+Recipes
+-----
+### default
+This recipe only adds a mysql-community-release of the yum repository.
+
+### mysql_community_release::add_service
+This recipe calls a `default` and `mysql::mysql_service` recipes.
+
 Usage
 -----
 
